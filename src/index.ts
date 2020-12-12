@@ -17,14 +17,7 @@ client.on('message', (msg: Discord.Message) => {
         const args : Array<string> = split.slice(1);
     
         if (command === 'castigar') {
-            const users = msg.mentions.members;
-    
-            msg.guild.channels.create('castigados', {type: 'voice'})
-                .then(channel => {
-                    users.each(user => user.voice.setChannel(channel))
-                    channel.delete()
-                })
-                .catch(console.log)
+            msg.mentions.members.each(user => user.voice.kick())
         }
     }
 
